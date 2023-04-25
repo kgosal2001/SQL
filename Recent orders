@@ -1,0 +1,17 @@
+INSERT INTO customers (customer#, firstname, lastname) VALUES (999, 'Karanvir', 'Gosal');
+
+INSERT INTO orders (order#, customer#, orderdate) VALUES (888, 999, SYSDATE);
+
+INSERT INTO orderitems VALUES (888, 1, 3437212490, 2, 15.95);
+INSERT INTO orderitems VALUES (888, 2, 9247381001, 1, 75.95);
+
+SELECT FIRSTNAME AS "First Name",
+    LASTNAME AS "Last Name", ORDERDATE AS "Date",
+    BOOKS.Title AS "Book Title", Quantity
+
+FROM CUSTOMERS, ORDERS, ORDERITEMS, BOOKS
+
+WHERE CUSTOMERS.Customer# = ORDERS.Customer#
+    AND ORDERS.Order# = ORDERITEMS.Order#
+    AND BOOKS.ISBN = ORDERITEMS.ISBN
+    AND ORDERDATE BETWEEN CURRENT_DATE-10 AND CURRENT_DATE
